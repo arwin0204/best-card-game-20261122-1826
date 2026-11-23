@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember Duel — a card battle of cinders</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Ember Duel: a turn-based card battler. All art is CSS, all sound is
+     synthesized WebAudio, all scripts are local files under game/js/.
+     No network requests, no build step: open index.html from any static server. -->
+<div id="stage">
+  <div id="table">
+    <header id="topbar">
+      <div class="fighter" id="foe-box">
+        <div class="portrait foe-portrait" aria-hidden="true">CW</div>
+        <div class="fighter-info">
+          <div class="fighter-name">Cinder Warden <span class="tag">AI OPPONENT</span></div>
+          <div class="hpbar"><div class="hp-fill foe-hp" id="foe-hp-fill"></div><span class="hp-text" id="foe-hp-text"></span></div>
+          <div class="block-row"><span class="block-badge" id="foe-block"></span><span class="intent" id="foe-intent"></span></div>
+        </div>
+      </div>
+      <div id="turn-banner">
+        <div id="turn-label">TURN 1</div>
+        <div id="phase-label">Your move</div>
+      </div>
+      <div class="fighter" id="you-box">
+        <div class="fighter-info right">
+          <div class="fighter-name">Ember Knight <span class="tag you">YOU</span></div>
+          <div class="hpbar"><div class="hp-fill you-hp" id="you-hp-fill"></div><span class="hp-text" id="you-hp-text"></span></div>
+          <div class="block-row"><span class="block-badge" id="you-block"></span><span class="mana" id="mana-text"></span></div>
+        </div>
+        <div class="portrait you-portrait" aria-hidden="true">EK</div>
+      </div>
+    </header>
+
+    <section id="midfield">
+      <div id="foe-hand" class="hand foe-hand" aria-label="Opponent hand"></div>
+      <div id="arena">
+        <div id="log" aria-live="polite"></div>
+        <div id="float-layer"></div>
+      </div>
+      <div id="deck-row">
+        <div class="pile" id="draw-pile"><span class="pile-count" id="draw-count"></span><span class="pile-label">DRAW</span></div>
+        <button id="end-turn" type="button">END TURN <span class="key-hint">[Space]</span></button>
+        <div class="pile" id="discard-pile"><span class="pile-count" id="discard-count"></span><span class="pile-label">DISCARD</span></div>
+      </div>
+    </section>
+
+    <section id="you-hand" class="hand you-hand" aria-label="Your hand"></section>
+    <footer id="helpbar">
+      <span><b>Click</b> a card to play it &nbsp;·&nbsp; <b>1–7</b> play a card &nbsp;·&nbsp; <b>Space</b> end turn &nbsp;·&nbsp; <b>M</b> mute &nbsp;·&nbsp; <b>R</b> restart</span>
+      <span id="score-line"></span>
+    </footer>
+  </div>
+
+  <div id="title-screen" class="overlay">
+    <div class="title-card">
+      <div class="title-ember" aria-hidden="true">●</div>
+      <h1>EMBER DUEL</h1>
+      <p class="subtitle">A battle of cinders and cards</p>
+      <p class="rules">Outlast the Cinder Warden. Play cards to strike, guard and mend.<br>
+      Each turn your ember crystals refill — spend them wisely.<br>
+      Reduce the Warden (36 HP) to 0 before your own 30 HP flame goes out.</p>
+      <button id="start-btn" type="button">BEGIN THE DUEL</button>
+      <p class="tiny">An original game · keyboard &amp; mouse · no network needed</p>
+    </div>
+  </div>
+
+  <div id="end-screen" class="overlay hidden">
+    <div class="title-card end-card">
+      <h1 id="end-title">VICTORY</h1>
+      <p class="subtitle" id="end-sub"></p>
+      <div id="end-stats"></div>
+      <button id="again-btn" type="button">DUEL AGAIN</button>
+      <p class="tiny">Press R to restart</p>
+    </div>
+  </div>
+</div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
